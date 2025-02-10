@@ -2,13 +2,6 @@
 
 A modern, full-stack event management platform built with Next.js 14 and React 18, featuring real-time updates and interactive features.
 
-## Demo Video
-
-<!-- Video added to gdrive (https://drive.google.com/file/d/1E-IVk_SmeOjyY5qPZtVJtoHwZo5h7l_T/view?usp=sharing)] 
-How to include in github readme??-->
-[![Watch the video](https://drive.google.com/file/d/1E-IVk_SmeOjyY5qPZtVJtoHwZo5h7l_T/view?usp=sharing)]
-
-
 ## Key Features
 
 - 🔐 **Advanced Authentication**
