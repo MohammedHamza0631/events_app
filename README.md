@@ -4,6 +4,12 @@ A modern, full-stack event management platform built with Next.js 14 and React 1
 
 ## Demo Video
 
+<!-- <video width="100%" controls>
+  <source src="https://drive.google.com/file/d/1E-IVk_SmeOjyY5qPZtVJtoHwZo5h7l_T/view?usp=sharing" type="video/mp4">
+  
+</video> -->
+<embed src="https://drive.google.com/file/d/1E-IVk_SmeOjyY5qPZtVJtoHwZo5h7l_T/view?usp=sharing" type="video/mp4" width="100%" height="100%">
+
 ## Key Features
 
 - 🔐 **Advanced Authentication**
