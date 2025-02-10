@@ -57,46 +57,32 @@ A modern, full-stack event management platform built with Next.js 14 and React 1
 
 Create a \`.env.local\` file with:
 
-\`\`\`env
+```env
 MONGODB_URI=your_mongodb_uri
 JWT_SECRET=your_jwt_secret
 NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME=your_cloudinary_cloud_name
 CLOUDINARY_API_KEY=your_cloudinary_api_key
 CLOUDINARY_API_SECRET=your_cloudinary_api_secret
 NEXT_PUBLIC_APP_URL=your_app_url
-\`\`\`
+```
 
 ## Installation
 
 1. Clone the repository:
-   \`\`\`bash
+   ```bash
    git clone <repository-url>
    cd event-management-platform
-   \`\`\`
+    ```
 
 2. Install dependencies:
-   \`\`\`bash
+   ```bash
    npm install --legacy-peer-deps
-   \`\`\`
+   ```
 
 3. Run the development server:
-   \`\`\`bash
+   ```bash
    npm run dev
-   \`\`\`
-
-## Deployment on Vercel
-
-1. Fork/Clone this repository
-2. Import to Vercel:
-   - Connect your GitHub repository
-   - Add environment variables
-   - Deploy
-
-The \`vercel.json\` configuration handles:
-- Custom server setup
-- API routes
-- Socket.IO integration
-- Static file serving
+   ```
 
 ## User Types
 
@@ -126,15 +112,3 @@ The \`vercel.json\` configuration handles:
   - \`PUT /api/events/[id]\` - Update event
   - \`DELETE /api/events/[id]\` - Delete event
   - \`POST /api/events/[id]/attend\` - Register/unregister attendance
-
-## Contributing
-
-1. Fork the repository
-2. Create your feature branch
-3. Commit your changes
-4. Push to the branch
-5. Create a Pull Request
-
-## License
-
-This project is licensed under the MIT License.
