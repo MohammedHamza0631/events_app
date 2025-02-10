@@ -23,5 +23,7 @@
       "src": "/(.*)",
       "dest": "/$1"
     }
-  ]
+  ],
+  "devCommand": "node server.js",
+  "buildCommand": "npm run build"
 } 
