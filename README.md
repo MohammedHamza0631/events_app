@@ -1,6 +1,6 @@
 # Real-time Event Management Platform
 
-A modern, full-stack event management platform built with Next.js 15 and React 19, featuring real-time updates and interactive features.
+A modern, full-stack event management platform built with Next.js 14 and React 18, featuring real-time updates and interactive features.
 
 ## Key Features
 
@@ -34,8 +34,8 @@ A modern, full-stack event management platform built with Next.js 15 and React 1
 ## Tech Stack
 
 - **Frontend:** 
-  - Next.js 15
-  - React 19
+  - Next.js 14
+  - React 18
   - TailwindCSS
   - Shadcn UI
   - Socket.IO Client

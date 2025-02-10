@@ -6,12 +6,9 @@ import { useAuth } from '@/app/context/AuthContext';
 import EventForm from '@/components/events/EventForm';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/hooks/use-toast';
-import { use } from 'react';
 
 export default function EditEventPage({ params }) {
-  // Resolve params promise
-  const resolvedParams = use(params);
-  const eventId = resolvedParams.id;
+  const eventId = params.id;
   const [event, setEvent] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const { user, isAuthenticated } = useAuth();
