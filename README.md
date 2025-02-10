@@ -4,11 +4,10 @@ A modern, full-stack event management platform built with Next.js 14 and React 1
 
 ## Demo Video
 
-<!-- <video width="100%" controls>
-  <source src="https://drive.google.com/file/d/1E-IVk_SmeOjyY5qPZtVJtoHwZo5h7l_T/view?usp=sharing" type="video/mp4">
-  
-</video> -->
-<embed src="https://drive.google.com/file/d/1E-IVk_SmeOjyY5qPZtVJtoHwZo5h7l_T/view?usp=sharing" type="video/mp4" width="100%" height="100%">
+<!-- Video added to gdrive (https://drive.google.com/file/d/1E-IVk_SmeOjyY5qPZtVJtoHwZo5h7l_T/view?usp=sharing)] 
+How to include in github readme??-->
+[![Watch the video](https://drive.google.com/file/d/1E-IVk_SmeOjyY5qPZtVJtoHwZo5h7l_T/view?usp=sharing)]
+
 
 ## Key Features
 
