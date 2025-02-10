@@ -1,97 +1,140 @@
-# Event Management Platform
+# Real-time Event Management Platform
 
-A full-stack event management platform built with Next.js, MongoDB, and Socket.IO. This platform allows users to create, manage, and view events with real-time updates for attendees.
+A modern, full-stack event management platform built with Next.js 15 and React 19, featuring real-time updates and interactive features.
 
-## Features
+## Key Features
 
-- 👤 User Authentication (JWT)
-- 📅 Event Creation and Management
-- 🔄 Real-time Updates
-- 📱 Responsive Design
-- 🖼️ Image Upload (Cloudinary)
-- 🎨 Modern UI with Tailwind CSS and Shadcn-UI
+- 🔐 **Advanced Authentication**
+  - JWT-based authentication
+  - Regular user registration/login
+  - Guest user access with limited permissions
+  - Protected routes and API endpoints
+
+- 📅 **Event Management**
+  - Create, edit, and delete events
+  - Rich event details with image upload
+  - Category-based organization
+  - Attendee management with capacity limits
+  - Real-time event updates
+
+- ⚡ **Real-time Features**
+  - Live updates for event changes
+  - Real-time attendee list updates
+  - Socket.IO integration
+  - Instant notifications
+
+- 🎨 **Modern UI/UX**
+  - Responsive design
+  - Dark/light mode support
+  - Toast notifications
+  - Loading states and animations
+  - Form validation
+  - Interactive date picker
 
 ## Tech Stack
 
-- **Frontend:** Next.js (App Router)
-- **Backend:** Next.js API Routes
-- **Database:** MongoDB Atlas
-- **Authentication:** JWT
-- **Real-time:** Socket.IO
-- **Image Storage:** Cloudinary
-- **Styling:** Tailwind CSS with Shadcn-UI
+- **Frontend:** 
+  - Next.js 15
+  - React 19
+  - TailwindCSS
+  - Shadcn UI
+  - Socket.IO Client
+
+- **Backend:**
+  - Next.js API Routes
+  - Socket.IO Server
+  - MongoDB with Mongoose
+  - JWT Authentication
+  - Cloudinary Integration
 
 ## Prerequisites
 
-- Node.js 18+ and npm
-- MongoDB Atlas account
-- Cloudinary account
+- Node.js >= 18
+- MongoDB Atlas Account
+- Cloudinary Account
 
-## Getting Started
+## Environment Variables
+
+Create a \`.env.local\` file with:
+
+\`\`\`env
+MONGODB_URI=your_mongodb_uri
+JWT_SECRET=your_jwt_secret
+NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME=your_cloudinary_cloud_name
+CLOUDINARY_API_KEY=your_cloudinary_api_key
+CLOUDINARY_API_SECRET=your_cloudinary_api_secret
+NEXT_PUBLIC_APP_URL=your_app_url
+\`\`\`
+
+## Installation
 
 1. Clone the repository:
-   ```bash
+   \`\`\`bash
    git clone <repository-url>
    cd event-management-platform
-   ```
+   \`\`\`
 
 2. Install dependencies:
-   ```bash
-   npm install
-   ```
+   \`\`\`bash
+   npm install --legacy-peer-deps
+   \`\`\`
 
-3. Set up environment variables:
-   - Copy `.env.example` to `.env.local`
-   - Fill in your environment variables:
-     - MongoDB Atlas connection string
-     - JWT secret key
-     - Cloudinary credentials
-
-4. Run the development server:
-   ```bash
+3. Run the development server:
+   \`\`\`bash
    npm run dev
-   ```
+   \`\`\`
 
-5. Open [http://localhost:3000](http://localhost:3000) in your browser
+## Deployment on Vercel
 
-## Test Credentials
+1. Fork/Clone this repository
+2. Import to Vercel:
+   - Connect your GitHub repository
+   - Add environment variables
+   - Deploy
 
-For testing purposes, you can use these credentials:
+The \`vercel.json\` configuration handles:
+- Custom server setup
+- API routes
+- Socket.IO integration
+- Static file serving
 
-```
-Email: test@example.com
-Password: test123
-```
+## User Types
 
-Or use the "Guest Login" feature to explore with limited access.
+1. **Regular Users**
+   - Full access to all features
+   - Create and manage events
+   - Register for events
+   - Real-time updates
+
+2. **Guest Users**
+   - Limited access
+   - Can view events
+   - Can register for events
+   - Cannot create/edit events
 
 ## API Routes
 
-### Authentication
-- `POST /api/auth/register` - Register new user
-- `POST /api/auth/login` - User login
-- `POST /api/auth/guest` - Guest login
+- **Authentication**
+  - \`POST /api/auth/register\` - Register new user
+  - \`POST /api/auth/login\` - User login
+  - \`POST /api/auth/guest\` - Guest login
 
-### Events
-- `GET /api/events` - List events
-- `POST /api/events` - Create event
-- `GET /api/events/[id]` - Get event details
-- `PUT /api/events/[id]` - Update event
-- `DELETE /api/events/[id]` - Delete event
-- `POST /api/events/[id]/attend` - Register attendance
-
-## Deployment
-
-This application is deployed on Vercel. The database is hosted on MongoDB Atlas, and images are stored on Cloudinary.
+- **Events**
+  - \`GET /api/events\` - List events with filters
+  - \`POST /api/events\` - Create event
+  - \`GET /api/events/[id]\` - Get event details
+  - \`PUT /api/events/[id]\` - Update event
+  - \`DELETE /api/events/[id]\` - Delete event
+  - \`POST /api/events/[id]/attend\` - Register/unregister attendance
 
 ## Contributing
 
 1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
+2. Create your feature branch
+3. Commit your changes
+4. Push to the branch
+5. Create a Pull Request
 
 ## License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+This project is licensed under the MIT License.
