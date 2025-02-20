@@ -3,7 +3,7 @@ import connectDB from '@/lib/db';
 import Event from '@/lib/models/Event';
 import User from '@/lib/models/User';
 import { withAuth, withErrorHandler } from '@/lib/middleware';
-import { emitEventUpdate } from '@/lib/socket';
+import { broadcastUpdate } from './sse/route';
 
 // GET /api/events/[id] - Get event details
 async function handleGet(request, context) {
@@ -71,8 +71,8 @@ async function handlePut(request, context) {
     { new: true }
   ).populate('creator', 'name email');
 
-  // Emit update event
-  emitEventUpdate(id, { type: 'update', event });
+  // Broadcast update using SSE
+  broadcastUpdate(id, { type: 'update', event: updatedEvent });
 
   return NextResponse.json(updatedEvent);
 }
@@ -107,8 +107,8 @@ async function handleDelete(request, context) {
 
   await event.deleteOne();
   
-  // Emit delete event
-  emitEventUpdate(id, { type: 'delete', eventId: id });
+  // Broadcast delete using SSE
+  broadcastUpdate(id, { type: 'delete', eventId: id });
 
   return NextResponse.json({ message: 'Event deleted successfully' });
 }

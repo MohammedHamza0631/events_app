@@ -20,7 +20,6 @@ import {
   AlertDialogTitle,
 } from '@/components/ui/alert-dialog';
 import { useToast } from '@/hooks/use-toast';
-import io from 'socket.io-client';
 
 export default function EventDetailsPage({ params }) {
   const eventId = params.id;
@@ -40,51 +39,40 @@ export default function EventDetailsPage({ params }) {
 
     fetchEvent();
 
-    // Connect to Socket.IO
-    let socket;
-    try {
-      socket = io(process.env.NEXT_PUBLIC_APP_URL, {
-        path: '/api/socketio',
-        transports: ['polling', 'websocket'],
-        reconnectionAttempts: 5,
-        reconnectionDelay: 1000,
-      });
+    // Set up SSE connection
+    const eventSource = new EventSource(`/api/events/${eventId}/sse`);
 
-      socket.on('connect', () => {
-        console.log('Connected to Socket.IO');
-        socket.emit('joinEvent', eventId);
-      });
+    eventSource.onmessage = (event) => {
+      const data = JSON.parse(event.data);
+      
+      if (data.type === 'attendance') {
+        setEvent(data.event);
+        toast({
+          title: 'Attendance Updated',
+          description: `Someone has ${data.action}ed the event.`,
+        });
+      } else if (data.type === 'update') {
+        setEvent(data.event);
+        toast({
+          title: 'Event Updated',
+          description: 'Event details have been updated.',
+        });
+      } else if (data.type === 'delete') {
+        toast({
+          title: 'Event Deleted',
+          description: 'This event has been deleted by the organizer.',
+        });
+        router.push('/events');
+      }
+    };
 
-      socket.on('connect_error', (error) => {
-        console.error('Socket.IO connection error:', error);
-      });
-
-      socket.on('eventUpdate', (data) => {
-        if (data.type === 'delete') {
-          toast({
-            title: 'Event Deleted',
-            description: 'This event has been deleted by the organizer.',
-          });
-          router.push('/events');
-        } else {
-          setEvent(data.event);
-          if (data.type === 'attendance') {
-            toast({
-              title: 'Attendance Updated',
-              description: `Someone has ${data.action}ed the event.`,
-            });
-          }
-        }
-      });
-    } catch (error) {
-      console.error('Socket.IO initialization error:', error);
-    }
+    eventSource.onerror = (error) => {
+      console.error('SSE error:', error);
+      eventSource.close();
+    };
 
     return () => {
-      if (socket) {
-        socket.emit('leaveEvent', eventId);
-        socket.disconnect();
-      }
+      eventSource.close();
     };
   }, [eventId]);
 

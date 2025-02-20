@@ -3,7 +3,7 @@ import connectDB from '@/lib/db';
 import Event from '@/lib/models/Event';
 import User from '@/lib/models/User';
 import { withAuth, withErrorHandler } from '@/lib/middleware';
-import { emitEventUpdate } from '@/lib/socket';
+import { broadcastUpdate } from '../sse/route';
 
 // POST /api/events/[id]/attend - Register/unregister attendance
 async function handler(request, { params }) {
@@ -31,18 +31,18 @@ async function handler(request, { params }) {
     }
 
     if (action === 'register') {
-      // Check if event is full
-      if (event.isFull) {
-        return NextResponse.json(
-          { error: 'Event is full' },
-          { status: 400 }
-        );
-      }
-
       // Check if user is already registered
       if (event.attendees.includes(request.userId)) {
         return NextResponse.json(
           { error: 'Already registered for this event' },
+          { status: 400 }
+        );
+      }
+
+      // Check if event can accept more attendees
+      if (!event.canAcceptMoreAttendees()) {
+        return NextResponse.json(
+          { error: 'Event is full' },
           { status: 400 }
         );
       }
@@ -77,14 +77,13 @@ async function handler(request, { params }) {
     await user.save();
     await event.populate('attendees', 'name email');
 
-    // Emit update event
-    emitEventUpdate(params?.id, {
+    // Broadcast update using SSE
+    broadcastUpdate(params?.id, {
       type: 'attendance',
       event,
       action,
       userId: request.userId
     });
-
 
     return NextResponse.json({
       message: `Successfully ${action}ed for the event`,
