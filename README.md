@@ -1,8 +1,54 @@
 # Real-time Event Management Platform
 
+<div align="center">
+  <br />
+  <a href="https://events-app-demo.vercel.app" target="_blank">
+    <img src="public/cover.png" alt="Project Banner" style="border-radius: 12px;">
+  </a>
+  <br />
+
+  <div>
+    <img src="https://img.shields.io/badge/-Next_JS_14-black?style=for-the-badge&logoColor=white&logo=nextdotjs&color=000000" alt="nextjs" />
+    <img src="https://img.shields.io/badge/-MongoDB-green?style=for-the-badge&logoColor=white&logo=mongodb&color=47A248" alt="mongodb" />
+    <img src="https://img.shields.io/badge/-React_18-blue?style=for-the-badge&logoColor=white&logo=react&color=61DAFB" alt="react" />
+    <img src="https://img.shields.io/badge/-Tailwind_CSS-black?style=for-the-badge&logoColor=white&logo=tailwindcss&color=06B6D4" alt="tailwindcss" />
+    <img src="https://img.shields.io/badge/-ShadCN_UI-black?style=for-the-badge&logoColor=white&logo=shadcnui&color=000000" alt="shadcnui" />
+  </div>
+
+  <h3 align="center">A Modern Full-Stack Event Management Platform</h3>
+</div>
+
+## 📋 Table of Contents
+
+1. 🤖 [Introduction](#introduction)
+2. ⚙️ [Tech Stack](#tech-stack)
+3. 🔋 [Features](#features)
+4. 📊 [Database Schema](#database-schema)
+5. 🤸 [Prerequisites](#prerequisites)
+6. ⚡ [Environment Variables](#environment-variables)
+7. 🚀 [Installation](#installation)
+
+## 🤖 Introduction
+
 A modern, full-stack event management platform built with Next.js 14 and React 18, featuring real-time updates and interactive features.
 
-## Key Features
+## ⚙️ Tech Stack
+
+- **Frontend:** 
+  - Next.js 14
+  - React 18
+  - TailwindCSS
+  - Shadcn UI
+  - Server-Sent Events (SSE) for real-time updates
+
+- **Backend:**
+  - Next.js API Routes
+  - Server-Sent Events (SSE)
+  - MongoDB with Mongoose
+  - JWT Authentication
+  - Cloudinary Integration
+
+## 🔋 Key Features
 
 - 🔐 **Advanced Authentication**
   - JWT-based authentication
@@ -15,12 +61,12 @@ A modern, full-stack event management platform built with Next.js 14 and React 1
   - Rich event details with image upload
   - Category-based organization
   - Attendee management with capacity limits
-  - Real-time event updates
+  - Real-time event updates using SSE
 
 - ⚡ **Real-time Features**
   - Live updates for event changes
   - Real-time attendee list updates
-  - Socket.IO integration
+  - Server-Sent Events for efficient real-time communication
   - Instant notifications
 
 - 🎨 **Modern UI/UX**
@@ -31,31 +77,45 @@ A modern, full-stack event management platform built with Next.js 14 and React 1
   - Form validation
   - Interactive date picker
 
-## Tech Stack
+## 📊 Database Schema
 
-- **Frontend:** 
-  - Next.js 14
-  - React 18
-  - TailwindCSS
-  - Shadcn UI
-  - Socket.IO Client
+### User Model
+```javascript
+{
+  email: String,          // Required, unique
+  password: String,       // Required, min length: 6
+  name: String,          // Required
+  isGuest: Boolean,      // Default: false
+  createdEvents: [Event],// Reference to events created by user
+  attendingEvents: [Event]// Reference to events user is attending
+}
+```
 
-- **Backend:**
-  - Next.js API Routes
-  - Socket.IO Server
-  - MongoDB with Mongoose
-  - JWT Authentication
-  - Cloudinary Integration
+### Event Model
+```javascript
+{
+  name: String,          // Required
+  description: String,   // Required
+  date: Date,           // Required
+  location: String,      // Required
+  category: String,      // Required, enum: ['music', 'sports', etc.]
+  imageUrl: String,      // Required, Cloudinary URL
+  creator: User,         // Required, reference to User
+  attendees: [User],     // Array of User references
+  maxAttendees: Number,  // Optional, for capacity limit
+  status: String         // enum: ['upcoming', 'ongoing', 'completed', 'cancelled']
+}
+```
 
-## Prerequisites
+## 🤸 Prerequisites
 
 - Node.js >= 18
 - MongoDB Atlas Account
 - Cloudinary Account
 
-## Environment Variables
+## ⚡ Environment Variables
 
-Create a \`.env.local\` file with:
+Create a `.env.local` file with:
 
 ```env
 MONGODB_URI=your_mongodb_uri
@@ -65,13 +125,13 @@ CLOUDINARY_API_KEY=your_cloudinary_api_key
 CLOUDINARY_API_SECRET=your_cloudinary_api_secret
 ```
 
-## Installation
+## 🚀 Installation
 
 1. Clone the repository:
    ```bash
    git clone <repository-url>
    cd event-management-platform
-    ```
+   ```
 
 2. Install dependencies:
    ```bash
@@ -111,3 +171,5 @@ CLOUDINARY_API_SECRET=your_cloudinary_api_secret
   - \`PUT /api/events/[id]\` - Update event
   - \`DELETE /api/events/[id]\` - Delete event
   - \`POST /api/events/[id]/attend\` - Register/unregister attendance
+
+---
