@@ -23,10 +23,9 @@
 1. 🤖 [Introduction](#introduction)
 2. ⚙️ [Tech Stack](#tech-stack)
 3. 🔋 [Features](#features)
-4. 📊 [Database Schema](#database-schema)
-5. 🤸 [Prerequisites](#prerequisites)
-6. ⚡ [Environment Variables](#environment-variables)
-7. 🚀 [Installation](#installation)
+4. 🤸 [Prerequisites](#prerequisites)
+5. ⚡ [Environment Variables](#environment-variables)
+6. 🚀 [Installation](#installation)
 
 ## 🤖 Introduction
 
@@ -76,7 +75,7 @@ A modern, full-stack event management platform built with Next.js 14 and React 1
   - Loading states and animations
   - Form validation
   - Interactive date picker
-
+<!--
 ## 📊 Database Schema
 
 ### User Model
@@ -105,7 +104,7 @@ A modern, full-stack event management platform built with Next.js 14 and React 1
   maxAttendees: Number,  // Optional, for capacity limit
   status: String         // enum: ['upcoming', 'ongoing', 'completed', 'cancelled']
 }
-```
+```-->
 
 ## 🤸 Prerequisites
 
